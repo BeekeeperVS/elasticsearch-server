@@ -13,7 +13,7 @@ services:
       ELASTICSEARCH_URL: http://es01:9200
       ELASTICSEARCH_HOSTS: '["http://es01:9200","http://es02:9200","http://es03:9200"]'
     networks:
-    - elastic
+      - elastic
   es01:
     build: ./elasticsearch
     container_name: es01
@@ -24,6 +24,9 @@ services:
       - cluster.initial_master_nodes=es01,es02,es03
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    mem_limit: 1G
+    memswap_limit: 128m
+    cpus: 1
     ulimits:
       memlock:
         soft: -1
@@ -44,6 +47,9 @@ services:
       - cluster.initial_master_nodes=es01,es02,es03
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    mem_limit: 1G
+    memswap_limit: 128m
+    cpus: 1
     ulimits:
       memlock:
         soft: -1
@@ -62,6 +68,9 @@ services:
       - cluster.initial_master_nodes=es01,es02,es03
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    mem_limit: 1000m
+    memswap_limit: 128m
+    cpus: 1
     ulimits:
       memlock:
         soft: -1
